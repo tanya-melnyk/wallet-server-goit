@@ -1,25 +1,25 @@
 {
-  "name": "webpack-starter-kit",
+  "name": "wallet-server-goit",
   "version": "1.1.0",
-  "description": "",
+  "description": "Node.js project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.mode development --config ./webpack/config.js",
+    "start": "nodemon ./src/server/server.js",
     "build": "webpack --env.mode production --config ./webpack/config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luxplanjay/webpack-starter-kit.git"
+    "url": "git+https://github.com/tanya-melnyk/wallet-server-goit.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Tetiana Melnyk <tetiana.melnyk.ua@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/luxplanjay/webpack-starter-kit/issues"
+    "url": "https://github.com/tanya-melnyk/wallet-server-goit/issues"
   },
-  "homepage": "https://github.com/luxplanjay/webpack-starter-kit#readme",
+  "homepage": "https://github.com/tanya-melnyk/wallet-server-goit#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -48,6 +48,8 @@
   },
   "dependencies": {
     "core-js": "^3.1.4",
-    "handlebars": "^4.1.2"
+    "express": "^4.17.1",
+    "handlebars": "^4.1.2",
+    "nodemon": "^1.19.1"
   }
 }
