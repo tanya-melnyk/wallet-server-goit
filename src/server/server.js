@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
 const PORT = process.env.PORT || 3000;
 
 // costs
-
-const costsList = require('../db/costs/all-costs.json');
 
 const cost = {
   // list: function(req, res) {
@@ -14,44 +13,60 @@ const cost = {
 
   byID: function(req, res) {
     const id = req.params.id;
-    const costByID = costsList.find(cost => cost.id === Number(id));
     let answerStatus = 'success';
 
-    if (!costByID) {
-      answerStatus = 'no cost with id ' + id;
-    }
+    fs.readFile('./src/db/costs/all-costs.json', (err, data) => {
+      if (err) {
+        return console.error(err);
+      }
 
-    const response = {
-      status: answerStatus,
-      costs: [costByID],
-    };
+      const costsList = JSON.parse(data.toString());
+      const costByID = costsList.find(cost => cost.id === Number(id));
 
-    res.send(response);
+      if (!costByID) {
+        answerStatus = 'no cost with id ' + id;
+      }
+
+      const response = {
+        status: answerStatus,
+        costs: [costByID],
+      };
+
+      res.send(response);
+    });
   },
 
   byCategory: function(req, res) {
     const category = req.query.category;
 
-    if (!category) {
-      return res.send(costsList);
-    }
+    fs.readFile('./src/db/costs/all-costs.json', (err, data) => {
+      if (err) {
+        return console.error(err);
+      }
 
-    const costsByCategory = costsList.filter(cost =>
-      cost.categories.includes(category),
-    );
+      const costsList = JSON.parse(data.toString());
 
-    let answerStatus = 'success';
+      if (!category) {
+        return res.send(costsList);
+      }
 
-    if (!costsByCategory.length) {
-      answerStatus = 'no costs in category ' + category;
-    }
+      const costsByCategory = costsList.filter(cost =>
+        cost.categories.includes(category),
+      );
 
-    const response = {
-      status: answerStatus,
-      costs: costsByCategory,
-    };
+      let answerStatus = 'success';
 
-    res.send(response);
+      if (!costsByCategory.length) {
+        answerStatus = 'no costs in category ' + category;
+      }
+
+      const response = {
+        status: answerStatus,
+        costs: costsByCategory,
+      };
+
+      res.send(response);
+    });
   },
 };
 
