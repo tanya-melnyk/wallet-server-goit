@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 // costs
 
+const costsPath = './src/db/costs/all-costs.json';
+
 const cost = {
   // list: function(req, res) {
   //   res.send(costsList);
@@ -15,7 +17,7 @@ const cost = {
     const id = req.params.id;
     let answerStatus = 'success';
 
-    fs.readFile('./src/db/costs/all-costs.json', (err, data) => {
+    fs.readFile(costsPath, (err, data) => {
       if (err) {
         return console.error(err);
       }
@@ -39,7 +41,7 @@ const cost = {
   byCategory: function(req, res) {
     const category = req.query.category;
 
-    fs.readFile('./src/db/costs/all-costs.json', (err, data) => {
+    fs.readFile(costsPath, (err, data) => {
       if (err) {
         return console.error(err);
       }
