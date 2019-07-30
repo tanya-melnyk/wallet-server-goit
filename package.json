@@ -1,0 +1,21 @@
+{
+  "name": "wallet-server-goit",
+  "version": "1.1.0",
+  "description": "Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanya-melnyk/wallet-server-goit.git"
+  },
+  "keywords": [],
+  "author": "Tetiana Melnyk <tetiana.melnyk.ua@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
