@@ -13,7 +13,7 @@ const getCostsByCategory = (req, res) => {
     const costsList = JSON.parse(data.toString());
 
     if (!category) {
-      return res.send(costsList);
+      return res.status(200).json(costsList);
     }
 
     const costsByCategory = costsList.filter(cost =>
