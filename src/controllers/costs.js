@@ -20,7 +20,7 @@ exports.findById = (req, res) =>
     res.status(200).json(doc);
   });
 
-exports.save = (req, res) => {
+exports.create = (req, res) => {
   const cost = {
     name: req.body.name,
     description: req.body.description,
@@ -31,7 +31,7 @@ exports.save = (req, res) => {
     categories: req.body.categories,
   };
 
-  Costs.save(cost, (err, result) => {
+  Costs.create(cost, (err, result) => {
     if (err) {
       console.log(err);
       return res.sendStatus(500);

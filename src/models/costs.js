@@ -1,6 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 
-const db = require('../db/db');
+const db = require('../config/db');
 
 exports.all = cb =>
   db
@@ -15,7 +15,7 @@ exports.findById = (id, cb) =>
     .collection('costs')
     .findOne({ _id: ObjectID(id) }, (err, doc) => cb(err, doc));
 
-exports.save = (cost, cb) =>
+exports.create = (cost, cb) =>
   db
     .get()
     .collection('costs')

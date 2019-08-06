@@ -2,7 +2,7 @@ const corsMiddleware = require('cors');
 const express = require('express');
 
 const costsRouter = require('./routes/costs');
-const db = require('./db/db');
+const db = require('./config/db');
 
 // db Connection URL
 const url =
