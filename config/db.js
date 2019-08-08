@@ -1,30 +1,29 @@
-const mongoose = require("mongoose");
-const config = require("config");
+const mongoose = require('mongoose');
+const config = require('config');
 
 mongoose.Promise = global.Promise;
 
 // mongoDB connection URL
-const dbURI =
-  "mongodb+srv://Test-user:" +
-  process.env.MONGO_ATLAS_PW +
-  "@test-so7gz.mongodb.net/test";
-
+const dbURI = config.get('mongoURI');
 // or
-// const dbURI = config.get("mongoURI");
+// const dbURI =
+//   "mongodb+srv://Test-user:" +
+//   process.env.MONGO_ATLAS_PW +
+//   "@test-so7gz.mongodb.net/test";
 
 const connectionOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  dbName: "wallet",
-  w: "majority",
-  retryWrites: true
+  dbName: 'wallet',
+  w: 'majority',
+  retryWrites: true,
 };
 
 const connectDB = async () => {
   try {
     await mongoose.connect(dbURI, connectionOptions);
-    console.log("MongoDB Connected...");
+    console.log('MongoDB Connected...');
   } catch (err) {
     console.error(err.message);
     // Exit process with failure
