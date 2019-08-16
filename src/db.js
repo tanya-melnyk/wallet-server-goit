@@ -1,11 +1,16 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const config = require('config');
 
 mongoose.Promise = global.Promise;
 
-// mongoDB connection URL
-const dbURI = config.get('mongoURI');
+// mongoDB connection URL and database name
+const dbName = config.get('dbName');
+const dbURI = config.get('dbURI');
+
 // or
+
 // const dbURI =
 //   "mongodb+srv://Test-user:" +
 //   process.env.MONGO_ATLAS_PW +
@@ -15,7 +20,7 @@ const connectionOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  dbName: 'wallet',
+  dbName,
   w: 'majority',
   retryWrites: true,
 };

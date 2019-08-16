@@ -1,8 +1,9 @@
-const { Router } = require('express');
-const router = Router();
-const { check } = require('express-validator');
+'use strict';
 
 const costsCtrls = require('./costsControllers');
+const { check } = require('express-validator');
+const { Router } = require('express');
+const router = Router();
 
 // @route /costs
 

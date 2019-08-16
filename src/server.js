@@ -1,8 +1,11 @@
-const express = require('express');
+'use strict';
+
 const corsMiddleware = require('cors');
-const costsRouter = require('./src/costs/costsRoutes');
-const usersRouter = require('./src/users/usersRoutes');
-const connectDB = require('./config/db');
+const express = require('express');
+const morgan = require('morgan');
+
+const connectDB = require('./db');
+const router = require('./router');
 
 const app = express();
 
@@ -15,11 +18,11 @@ app.use(corsMiddleware());
 app.use(express.urlencoded({ extended: false }));
 // parse application/json
 app.use(express.json());
+// log all request in the Apache combined format to STDOUT
+app.use(morgan('combined'));
 
-// Define Routes
-app.get('/', (req, res) => res.send('API Running'));
-app.use('/costs', costsRouter);
-app.use('/users', usersRouter);
+// Use Routes
+app.use(router);
 
 // Error Handling
 app.use((req, res, next) => {
@@ -31,9 +34,4 @@ app.use((err, req, res, next) => {
   res.status(500).json({ err: '500' });
 });
 
-// Server
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, function() {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;

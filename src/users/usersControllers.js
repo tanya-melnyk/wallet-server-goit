@@ -1,3 +1,5 @@
+'use strict';
+
 const User = require('./usersModel');
 
 // Create User

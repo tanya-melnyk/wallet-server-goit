@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -19,7 +21,7 @@ const userSchema = new Schema(
   { collection: 'users' },
 );
 
-module.exports = User = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
 // you can put collection name under the scheme
 // or as the third arg in model declaration
