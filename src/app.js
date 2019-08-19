@@ -4,21 +4,20 @@ const corsMiddleware = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 
-const connectDB = require('./db');
 const router = require('./router');
 
 const app = express();
 
-// Connect Database
-connectDB();
-
 // Init Middleware
 app.use(corsMiddleware());
-// parse application/x-www-form-urlencoded
+
+// Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
-// parse application/json
+
+// Parse application/json
 app.use(express.json());
-// log all request in the Apache combined format to STDOUT
+
+// Log all request in the Apache combined format to STDOUT
 app.use(morgan('combined'));
 
 // Use Routes
