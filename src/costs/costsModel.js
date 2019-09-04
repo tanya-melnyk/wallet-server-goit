@@ -1,7 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
 
 const costSchema = new Schema(
   {
@@ -37,7 +36,7 @@ const costSchema = new Schema(
   { collection: 'costs' },
 );
 
-module.exports = mongoose.model('Cost', costSchema);
+module.exports = model('Cost', costSchema);
 
 // you can put collection name under the scheme
 // or as the third arg in model declaration

@@ -14,32 +14,12 @@ exports.addCost = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  // const {
-  //   name,
-  //   description,
-  //   price,
-  //   currency,
-  //   created,
-  //   modified,
-  //   categories,
-  // } = req.body;
-  // const cost = new Cost({
-  //   name,
-  //   description,
-  //   price,
-  //   currency,
-  //   created,
-  //   modified,
-  //   categories,
-  // });
-
-  const costData = { ...req.body };
-  const сost = new Cost(costData);
+  const сost = new Cost(req.body);
 
   try {
     const savedCost = await сost.save();
 
-    res.status(201).json({ createdCost: savedCost });
+    res.status(201).json({ addedCost: savedCost });
   } catch (err) {
     console.error(err.message);
 

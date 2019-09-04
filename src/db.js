@@ -8,9 +8,7 @@ mongoose.Promise = global.Promise;
 // mongoDB connection URL and database name
 const dbName = config.get('dbName');
 const dbURI = config.get('dbURI');
-
 // or
-
 // const dbURI =
 //   "mongodb+srv://Test-user:" +
 //   process.env.MONGO_ATLAS_PW +
