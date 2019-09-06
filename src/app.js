@@ -1,8 +1,11 @@
 'use strict';
 
+require('./core/express-promise');
+
 const corsMiddleware = require('cors');
 const express = require('express');
-const morgan = require('morgan');
+const expressDomain = require('express-domain');
+const logger = require('morgan');
 
 const router = require('./router');
 
@@ -10,6 +13,7 @@ const app = express();
 
 // Init Middleware
 app.use(corsMiddleware());
+app.use(expressDomain());
 
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
@@ -18,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Log all request in the Apache combined format to STDOUT
-app.use(morgan('combined'));
+app.use(logger('combined'));
 
 // Use Routes
 app.use(router);
